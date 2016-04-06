@@ -24,4 +24,4 @@ public:
 	uint last_texture = 0;
 };
 
-#endif // __ModuleTextures_H__
+#endif 

@@ -9,7 +9,7 @@ class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
 class ModuleRender;
-class ModuleBackground;
+class Module_lvl_1;
 class ModulePlayer;
 class Module;
 
@@ -22,7 +22,7 @@ public:
 	ModuleRender* render;
 	ModuleInput* input;
 	ModuleTextures* textures;
-	ModuleBackground* background;
+	Module_lvl_1* background;
 	ModulePlayer* player;
 
 public:

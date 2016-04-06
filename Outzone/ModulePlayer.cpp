@@ -4,7 +4,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-
+#include"ModuleRender.h"
 ModulePlayer::ModulePlayer()
 {
 	position.x = 100;
@@ -54,6 +54,7 @@ update_status ModulePlayer::Update()
 	{
 		current_animation = &forward;
 		position.y += speed;
+		
 	}
 	else if (App->input->keyboard[SDL_SCANCODE_W] == 1){
 		current_animation = &forward;

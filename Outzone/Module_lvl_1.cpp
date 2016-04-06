@@ -2,9 +2,9 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleBackground.h"
+#include "Module_lvl_1.h"
 
-ModuleBackground::ModuleBackground()
+Module_lvl_1::Module_lvl_1()
 {
 
 	// Level 1 
@@ -15,11 +15,11 @@ ModuleBackground::ModuleBackground()
 
 }
 
-ModuleBackground::~ModuleBackground()
+Module_lvl_1::~Module_lvl_1()
 {}
 
 // Load assets
-bool ModuleBackground::Start()
+bool Module_lvl_1::Start()
 {
 	LOG("Loading background assets");
 	bool ret = true;
@@ -28,7 +28,7 @@ bool ModuleBackground::Start()
 }
 
 // Update: draw background
-update_status ModuleBackground::Update()
+update_status Module_lvl_1::Update()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, 0, -3580, &background,0.75f); // lvl 1 background
