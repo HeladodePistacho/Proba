@@ -50,9 +50,10 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()	
 {
+	int escalated_screen = SCREEN_SIZE * MAP_SIZE * 1.2f;
 	int speed = 100;
 
-	if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && camera.y < MAP_SIZE){
+	if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && camera.y < escalated_screen){
 		camera.y += speed;
 	}
 
