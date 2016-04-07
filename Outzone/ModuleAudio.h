@@ -18,7 +18,7 @@ public:
 	bool Init();
 	bool Start();
 	bool CleanUp();
-	update_status Update();
+	
 };
 
 #endif
