@@ -2,6 +2,7 @@
 #define __lvl_2__
 
 #include "Module.h"
+#include "ModuleAudio.h"
 #include "Animation.h"
 #include "Globals.h"
 
@@ -19,6 +20,7 @@ public:
 
 public:
 
+	Mix_Music* audio_lvl_2 = nullptr;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	uint map_size = 5279;
