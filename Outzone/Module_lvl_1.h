@@ -20,7 +20,7 @@ public:
 	
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
-    #define MAP_SIZE 3896
+	uint map_size = 3896;
 };
 
 #endif

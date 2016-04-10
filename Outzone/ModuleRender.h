@@ -24,6 +24,7 @@ public:
 public:
 	SDL_Renderer* renderer = nullptr;
 	SDL_Rect camera;
+	uint escalated_screen;
 };
 
 #endif //__ModuleRenderer_H__

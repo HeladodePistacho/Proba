@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "Module_lvl_1.h"
+#include "Module_lvl_2.h"
 #include "SDL/include/SDL.h"
 
 
@@ -51,8 +52,8 @@ update_status ModuleRender::PreUpdate()
 
 update_status ModuleRender::Update()	
 {
-	int escalated_screen = SCREEN_SIZE * MAP_SIZE * 1.2f;
-	int speed = 10;
+	
+	int speed = 100;
 
 	if (App->input->keyboard[SDL_SCANCODE_UP] == 1 && camera.y < escalated_screen){
 		camera.y += speed;
@@ -89,6 +90,7 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section, f
 {
 	bool ret = true;
 	SDL_Rect rect;
+
 	rect.x = (int)(camera.x * speed) + x * SCREEN_SIZE;
 	rect.y = (int)(camera.y * speed) + y * SCREEN_SIZE;
 

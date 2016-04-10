@@ -6,6 +6,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "Module_lvl_1.h"
 #include "Module_lvl_2.h"
+#include "Module_Welcome.h"
 #include "ModuleChangeScene.h"
 
 ModuleChangeScene::ModuleChangeScene()
@@ -39,15 +40,29 @@ update_status ModuleChangeScene::Update()
 	{
 		if (now >= total_time)
 		{
-			// TODO 2: enable / disable the modules received when FadeToBlacks() gets called
-			if (App->lvl_1->IsEnabled()){
-				App->lvl_1->Disable();
-				App->lvl_2->Enable();
-			}
-			else{
-				App->lvl_2->Disable();
+			
+			if (App->welcome->IsEnabled())
+			{
+				App->welcome->Disable();
 				App->lvl_1->Enable();
 			}
+
+			else {
+				if (App->lvl_1->IsEnabled())
+				{
+					App->lvl_1->Disable();
+					App->lvl_2->Enable();
+				}
+
+				else{
+					if (App->lvl_2->IsEnabled())
+					{
+						App->lvl_2->Disable();
+						App->lvl_1->Enable();
+					}
+				}
+			}
+
 			// ---
 			total_time += total_time;
 			start_time = SDL_GetTicks();

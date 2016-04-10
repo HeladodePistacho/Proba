@@ -7,6 +7,7 @@
 #include "Module_lvl_1.h"
 #include "Module_lvl_2.h"
 #include "ModulePlayer.h"
+#include "Module_Welcome.h"
 #include"ModuleChangeScene.h"
 
 Application::Application()
@@ -20,6 +21,7 @@ Application::Application()
 	modules[6] = player = new ModulePlayer();
 	modules[7] = audio = new ModuleAudio();
 	modules[8] = change_scene = new ModuleChangeScene();
+	modules[9] = welcome = new Module_Welcome();
 }	
 
 Application::~Application()

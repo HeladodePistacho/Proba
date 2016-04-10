@@ -2,57 +2,48 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "Module_Welcome.h"
 #include "Module_lvl_1.h"
-#include "Module_lvl_2.h"
 #include "ModuleChangeScene.h"
 #include "ModulePlayer.h"
 #include "ModuleInput.h"
 
-Module_lvl_1::Module_lvl_1()
+Module_Welcome::Module_Welcome()
 {
-
-	// Level 1 
+	// Welcome UI
 	background.x = 0;
 	background.y = 0;
 	background.w = 240;
-	background.h = 3900;
-
+	background.h = 320;
 }
 
-Module_lvl_1::~Module_lvl_1()
-{}
+Module_Welcome::~Module_Welcome(){}
 
-
-
-
-// Load assets
-bool Module_lvl_1::Start()
+bool Module_Welcome::Start()
 {
-	
 	LOG("Loading background assets");
-	graphics = App->textures->Load("level1.png");
-	
+	graphics = App->textures->Load("Welcome_Screen.png");
+	App->render->escalated_screen = 0;
+
 	return true;
 }
-
 // Update: draw background
-update_status Module_lvl_1::Update()
+update_status Module_Welcome::Update()
 {
-	
 
 	if (IsEnabled() == true){
 		// Draw everything --------------------------------------
-		App->render->Blit(graphics, 0, -3570, &background, 0.75f); // lvl 1 background
+		App->render->Blit(graphics, 0, 0, &background, 0.75f);
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
-			App->change_scene->ChangeScene(App->lvl_2, App->lvl_1, 1.0f);
+			App->change_scene->ChangeScene(App->welcome, App->lvl_1, 1.0f);
 		}
 	}
 	return UPDATE_CONTINUE;
 }
 
-bool Module_lvl_1::CleanUp()
+bool Module_Welcome::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
-	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.23f;
+	App->render->escalated_screen = SCREEN_SIZE * App->lvl_1->map_size * 1.2f;
 	return true;
 }

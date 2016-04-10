@@ -1,5 +1,5 @@
-#ifndef __lvl_2__
-#define __lvl_2__
+#ifndef __ModuleWelcome_H__
+#define __ModuleWelcome_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class Module_lvl_2 : public Module
+class Module_Welcome : public Module
 {
 public:
-	Module_lvl_2();
-	~Module_lvl_2();
+	Module_Welcome();
+	~Module_Welcome();
 
 	bool Start();
 	update_status Update();
@@ -21,7 +21,7 @@ public:
 
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
-	uint map_size = 5279;
+
 };
 
 #endif
