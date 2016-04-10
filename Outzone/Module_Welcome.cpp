@@ -32,10 +32,12 @@ update_status Module_Welcome::Update()
 {
 
 	if (IsEnabled() == true){
+		
 		// Draw everything --------------------------------------
 		App->render->Blit(graphics, 0, 0, &background, 0.75f);
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 			App->change_scene->ChangeScene(App->welcome, App->lvl_1, 1.0f);
+
 		}
 	}
 	return UPDATE_CONTINUE;
@@ -44,6 +46,7 @@ update_status Module_Welcome::Update()
 bool Module_Welcome::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
+
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_1->map_size * 1.2f;
 	return true;
 }

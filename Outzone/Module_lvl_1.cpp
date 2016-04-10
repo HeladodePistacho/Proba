@@ -11,6 +11,8 @@
 Module_lvl_1::Module_lvl_1()
 {
 
+
+
 	// Level 1 
 	background.x = 0;
 	background.y = 0;
@@ -30,8 +32,9 @@ bool Module_lvl_1::Start()
 {
 	
 	LOG("Loading background assets");
-	graphics = App->textures->Load("level1.png");
-	
+		graphics = App->textures->Load("level1.png");
+		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
+		Mix_PlayMusic(audio_lvl_1, -1);
 	return true;
 }
 
@@ -39,20 +42,26 @@ bool Module_lvl_1::Start()
 update_status Module_lvl_1::Update()
 {
 	
-
 	if (IsEnabled() == true){
+	
 		// Draw everything --------------------------------------
 		App->render->Blit(graphics, 0, -3570, &background, 0.75f); // lvl 1 background
+		
+
 		if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1){
 			App->change_scene->ChangeScene(App->lvl_2, App->lvl_1, 1.0f);
 		}
+
+		
 	}
+
 	return UPDATE_CONTINUE;
 }
 
 bool Module_lvl_1::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
-	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.23f;
+	Mix_PauseMusic();
+	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;
 	return true;
 }

@@ -5,10 +5,11 @@
 #pragma comment(lib, "SDL_mixer/libx86/SDL2_mixer.lib")
 
 
-
-
 ModuleAudio::ModuleAudio() : Module()
-{}
+{
+	for (uint i = 0; i < MAX_AUDIOS; ++i)
+		audios[i] = nullptr;
+}
 
 ModuleAudio::~ModuleAudio(){}
 
@@ -32,24 +33,34 @@ bool ModuleAudio::Init()
 	return true;
 }
 
-bool ModuleAudio::Start()
+Mix_Music* const ModuleAudio::Load(const char* path)
 {
-	
+	Mix_Music* audio = Mix_LoadMUS(path);
 
-	Level_1_Theme = Mix_LoadMUS("1st_Level_Theme.ogg");
-	Mix_PlayMusic(Level_1_Theme, -1);
-	
-	
-	return true;
+	if (audio == NULL)
+	{
+		LOG("Audio error, %s", Mix_GetError());
+	}
+	else{
+		audios[last_audio++] = audio;
+	}
+
+	return audio;
+
 }
-
-
 
 bool ModuleAudio::CleanUp()
 {
 	LOG("Destroying audio");
 
-	Mix_FreeMusic(Level_1_Theme);
+	for (uint i = 0; i < MAX_AUDIOS; ++i)
+	{
+		if (audios[i] != nullptr)
+		{
+			Mix_FreeMusic(audios[i]);
+		}
+	}
+		
 	Mix_CloseAudio();
 	Mix_Quit();
 
