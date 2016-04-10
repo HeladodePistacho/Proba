@@ -5,7 +5,9 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "Module_lvl_1.h"
+#include "Module_lvl_2.h"
 #include "ModulePlayer.h"
+#include"ModuleChangeScene.h"
 
 Application::Application()
 {
@@ -13,9 +15,11 @@ Application::Application()
 	modules[1] = render = new ModuleRender();
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
-	modules[4] = background = new Module_lvl_1();
-	modules[5] = player = new ModulePlayer();
-	modules[6] = audio = new ModuleAudio();
+	modules[4] = lvl_1 = new Module_lvl_1();
+	modules[5] = lvl_2 = new Module_lvl_2();
+	modules[6] = player = new ModulePlayer();
+	modules[7] = audio = new ModuleAudio();
+	modules[8] = change_scene = new ModuleChangeScene();
 }	
 
 Application::~Application()
@@ -28,11 +32,16 @@ bool Application::Init()
 {
 	bool ret = true;
 
-	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
+	// Player will be enabled on the first update of a new scene
+
+	player->Disable();
+	// Disable the map that you do not start with
+	lvl_2->Disable();
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 
-	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
-		ret = modules[i]->Start();
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
 }
