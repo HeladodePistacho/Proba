@@ -51,6 +51,7 @@ update_status Module_lvl_2::Update()
 bool Module_lvl_2::CleanUp()
 {
 	LOG("Unloading lvl 2 stage");
+	App->render->escalated_screen = 0;
 	Mix_FadeOutMusic(500);
 	return true;
 }

@@ -8,6 +8,7 @@
 #include "Module_lvl_2.h"
 #include "ModulePlayer.h"
 #include "Module_Welcome.h"
+#include "Module_Congrats.h"
 #include"ModuleChangeScene.h"
 
 Application::Application()
@@ -22,6 +23,7 @@ Application::Application()
 	modules[7] = audio = new ModuleAudio();
 	modules[8] = change_scene = new ModuleChangeScene();
 	modules[9] = welcome = new Module_Welcome();
+	modules[10] = congrats = new Module_Congrats();
 }	
 
 Application::~Application()
@@ -40,6 +42,7 @@ bool Application::Init()
 	// Disable the map that you do not start with
 	lvl_1->Disable();
 	lvl_2->Disable();
+	congrats->Disable();
 	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
 

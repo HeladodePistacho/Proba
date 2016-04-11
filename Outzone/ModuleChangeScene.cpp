@@ -7,6 +7,7 @@
 #include "Module_lvl_1.h"
 #include "Module_lvl_2.h"
 #include "Module_Welcome.h"
+#include "Module_Congrats.h"
 #include "ModuleChangeScene.h"
 
 ModuleChangeScene::ModuleChangeScene()
@@ -59,7 +60,14 @@ update_status ModuleChangeScene::Update()
 					if (App->lvl_2->IsEnabled())
 					{
 						App->lvl_2->Disable();
-						App->lvl_1->Enable();
+						App->congrats->Enable();
+					}
+					else{
+						if (App->congrats->IsEnabled())
+						{
+							App->congrats->Disable();
+							App->welcome->Enable();
+						}
 					}
 				}
 			}
