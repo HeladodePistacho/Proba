@@ -34,7 +34,10 @@ bool Module_lvl_1::Start()
 	LOG("Loading background assets");
 		graphics = App->textures->Load("level1.png");
 		audio_lvl_1 = App->audio->Load("1st_Level_Theme.ogg");
+
+		Mix_FadeInMusicPos(audio_lvl_1, 1, 2000, 1);
 		Mix_PlayMusic(audio_lvl_1, -1);
+
 	return true;
 }
 
@@ -61,7 +64,8 @@ update_status Module_lvl_1::Update()
 bool Module_lvl_1::CleanUp()
 {
 	LOG("Unloading lvl 1 stage");
-	Mix_PauseMusic();
+	Mix_FadeOutMusic(500);
+	
 	App->render->escalated_screen = SCREEN_SIZE * App->lvl_2->map_size * 1.25f;
 	return true;
 }

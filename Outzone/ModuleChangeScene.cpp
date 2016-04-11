@@ -33,6 +33,7 @@ update_status ModuleChangeScene::Update()
 
 	Uint32 now = SDL_GetTicks() - start_time;
 	float normalized = MIN(1.0f, (float)now / (float)total_time);
+	
 
 	switch (current_step)
 	{
@@ -62,10 +63,11 @@ update_status ModuleChangeScene::Update()
 					}
 				}
 			}
-
+			
 			// ---
 			total_time += total_time;
 			start_time = SDL_GetTicks();
+
 			current_step = fade_step::fade_from_black;
 		}
 	} break;

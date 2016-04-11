@@ -28,6 +28,8 @@ bool Module_lvl_2::Start()
 	LOG("Loading background assets");
 	graphics = App->textures->Load("level2.png");
 	audio_lvl_2 = App->audio->Load("2nd_Level_Theme.ogg");
+
+	Mix_FadeInMusic(audio_lvl_2, 1, 500);
 	Mix_PlayMusic(audio_lvl_2, -1);
 	
 	return true;
@@ -49,6 +51,6 @@ update_status Module_lvl_2::Update()
 bool Module_lvl_2::CleanUp()
 {
 	LOG("Unloading lvl 2 stage");
-	Mix_PauseMusic();
+	Mix_FadeOutMusic(500);
 	return true;
 }
